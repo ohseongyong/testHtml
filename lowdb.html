@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lowDB</title>
+
+    
+    <script src="https://unpkg.com/lodash@4/lodash.min.js"></script>
+    <script src="https://unpkg.com/lowdb@0.17/dist/low.min.js"></script>
+    <script src="https://unpkg.com/lowdb@0.17/dist/LocalStorage.min.js"></script>
+    
+</head>
+
+<body>
+
+    <h1>Low DB Test</h1>
+    <div id="testInput">qqq</div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+
+    <script>
+        var adapter = new LocalStorage('db')
+        var db = low(adapter)
+
+        db.defaults({ class1: [], class2: []})
+            .write()
+
+        // db.get('class2')
+        //     .push({ id: 1, major: '경험디자인학과', sNumber: 'G2018509', name: '박서연' })
+        //     .write()
+
+
+        var dbValue = db.get('class1').value();
+        console.log(dbValue[0].name);
+        $('#testInput').html(dbValue[0].name);
+    </script>
+</body>
+
+</html>
